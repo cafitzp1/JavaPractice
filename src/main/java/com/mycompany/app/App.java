@@ -32,8 +32,6 @@ public class App
 
     private static void merge(int[] input, int start, int mid, int end) {
 
-        // both are sorted, so return if the last element of the left partition
-        // is less than or equal to the first element of the right partition
         if (input[mid - 1] <= input[mid])
             return;
 
