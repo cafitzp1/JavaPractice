@@ -24,42 +24,37 @@ public class EmployeeDoublyLinkedList {
 
     public boolean addBefore(Employee employeeToAdd, Employee srcEmployee) {
 
-        EmployeeNode nodeToAdd = new EmployeeNode(employeeToAdd);
+        // return if list is empty
+        if (head == null) return false;
+
         EmployeeNode current = head;
 
         // iterate over items
-        while (current != null) {
-            System.out.println(current.getEmployee());
-
-            // if the srcEmployee exists
-            if (current.getEmployee() == srcEmployee) {
-            
-                // for the node we are adding after
-                if (current == head) {
-                    head = nodeToAdd;
-                    current.setPrevious(nodeToAdd);
-                } else {
-                    current.getPrevious().setNext(nodeToAdd);
-                }
-
-                // for the node adding before
-                current.setPrevious(nodeToAdd);
-
-                // for the node we're adding
-                nodeToAdd.setNext(current);
-                nodeToAdd.setPrevious(current.getPrevious());
-                
-
-                size++;
-
-                return true;
-            }
-
+        while (current != null && !current.getEmployee().equals(srcEmployee)) {
             current = current.getNext();
         }
 
+        if (current == null) return false;
+
+        // new node fields
+        EmployeeNode newNode = new EmployeeNode(employeeToAdd);
+        newNode.setPrevious(current.getPrevious());
+        newNode.setNext(current);
+
+        // node we are inserting before fields
+        current.setPrevious(newNode);
+
+        // node we are inserting after; could be head, so we have to test
+        if (current == head) {
+            head = newNode;
+        } else {
+            newNode.getPrevious().setNext(newNode);
+        }
+
+        size++;
+
         // did not find the employee
-        return false;
+        return true;
     }
 
     public void addToEnd(Employee employee) {

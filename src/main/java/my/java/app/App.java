@@ -21,7 +21,13 @@ public class App {
         list.printList();
         System.out.println(list.getSize());
 
-        // add an employee before
+        // add employee before employee within list
+        list.addBefore(benBefore, john);
+
+        // add employee before head
+        list.addBefore(benBefore, mike);
+
+        // add an employee before false employee
         list.addBefore(benBefore, new Employee("fake", "employee", 000));
 
         list.printList();
