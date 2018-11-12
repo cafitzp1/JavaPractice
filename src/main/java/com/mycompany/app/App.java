@@ -1,13 +1,36 @@
 package com.mycompany.app;
 
+import java.util.HashMap;
+
 public class App {
     public static void main(String[] args) {
-        int[] intArray = { 20, 35, -15, 7, 55, 1, -22 };
 
-        // ...
+        int[] intArray = { 2, 7, 11, 14 };
+        int target = 9;
 
-        for (int i = 0; i < intArray.length; i++) {
-            System.out.println(intArray[i]);
+        int[] output = twoSum(intArray, target);
+
+        for (int i = 0; i < output.length; i++) {
+            System.out.println(output[i]);
         }
+    }
+
+    public static int[] twoSum(int[] nums, int target) {
+        if (nums == null || nums.length < 2)
+            return new int[] { 0, 0 };
+
+        if (nums.length == 2)
+            return new int[] { 0, 1 };
+
+        HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
+        for (int i = 0; i < nums.length; i++) {
+            int complement = target - nums[i];
+            if (map.containsKey(complement)) {
+                return new int[] { map.get(complement), i };
+            }
+            map.put(nums[i], i);
+        }
+
+        return new int[] { 0, 0 };
     }
 }
