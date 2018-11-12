@@ -1,65 +1,68 @@
 package com.mycompany.app;
 
+// time complexity: O(log (m+n))
 public class App {
     public static void main(String[] args) {
 
-        int[] intArray = { 20, 35, -15, 7, 55, 1, -22 };
+        int[] nums1 = { 1, 2 };
+        int[] nums2 = { -1, 3 };
 
-        mergeSort(intArray, 0, intArray.length);
-
-        for (int i = 0; i < intArray.length; i++) {
-            System.out.println(intArray[i]);
-        }
+        System.out.println(findMedianSortedArrays(nums1, nums2));
     }
 
-    private static void mergeSort(int[] input, int start, int end) {
+    private static double findMedianSortedArrays(int[] nums1, int[] nums2) {
 
-        // break out when the method is called with a one element array
-        // by definition, one element array is sorted
-        if (end - start < 2)
-            return;
+        // return if either array is empty
+        if (nums1 == null || nums1.length == 0)
+            return median(nums2);
+        else if (nums2 == null || nums2.length == 0)
+            return median(nums1);
 
-        int mid = (start + end) / 2;
+        // get arrays into 1 array
+        int[] input = new int[nums1.length + nums2.length];
+        System.arraycopy(nums1, 0, input, 0, nums1.length);
+        System.arraycopy(nums2, 0, input, nums1.length, nums2.length);
 
-        // handle the left partition sorting
-        // when this returns, the entire left side is sorted
-        mergeSort(input, start, mid);
+        // set mid to partition split
+        int start = 0, end = input.length, mid = nums1.length;
 
-        // handle the right partition sorting
-        // again, entire right side is sorted when this returns
-        mergeSort(input, mid, end);
-
-        // finally, merge left and right sorted partitions
-        // NOTE: because of recursion, this merges all sub arrays
+        // merge the array partitions
         merge(input, start, mid, end);
+
+        return median(input);
     }
 
     private static void merge(int[] input, int start, int mid, int end) {
 
-        // NOTE: at this point, each partition's elements are sorted
-        // if the last element of the left side is less than or equal
-        // to first element of right partition, we can return
+        // return if the partitions are sorted
         if (input[mid - 1] <= input[mid])
             return;
 
-        // keep track of where we are in temp array while copying
-        int i = start, j = mid, tempIndex = 0;
+        int i = start, 
+            j = mid, 
+            tempIndex = 0;
 
-        // allocate space in temp array to hold all copied values
+        // make a new array for merge sort
         int[] temp = new int[end - start];
 
-        // compare current element in left partition with current
-        // element in right partition (which we keep track of with i & j)
+        // compare separate partition elements
         while (i < mid && j < end) {
-            // write smaller element to the temp array
             temp[tempIndex++] = input[i] <= input[j] ? input[i++] : input[j++];
         }
 
-        // if there are items remaining in left array, we need to get
-        // them into their positions in the input array (overwrite) 
+        // overwrite input array with temp array
         System.arraycopy(input, i, input, start + tempIndex, mid - i);
-
-        // copy the temp array into the input array
         System.arraycopy(temp, 0, input, start, tempIndex);
+    }
+
+    private static double median(int[] input) {
+        int end = input.length, 
+            mid = (0 + end) / 2;
+
+        double med = end % 2 == 0 ?
+            (input[mid - 1] + input[mid]) / 2.0 :
+            input[mid];
+
+        return med;
     }
 }
