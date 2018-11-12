@@ -1,5 +1,7 @@
 package my.java.app;
 
+import java.awt.List;
+
 public class EmployeeDoublyLinkedList {
   
     private EmployeeNode head;
@@ -18,6 +20,46 @@ public class EmployeeDoublyLinkedList {
 
         head = node;
         size++;
+    }
+
+    public boolean addBefore(Employee employeeToAdd, Employee srcEmployee) {
+
+        EmployeeNode nodeToAdd = new EmployeeNode(employeeToAdd);
+        EmployeeNode current = head;
+
+        // iterate over items
+        while (current != null) {
+            System.out.println(current.getEmployee());
+
+            // if the srcEmployee exists
+            if (current.getEmployee() == srcEmployee) {
+            
+                // for the node we are adding after
+                if (current == head) {
+                    head = nodeToAdd;
+                    current.setPrevious(nodeToAdd);
+                } else {
+                    current.getPrevious().setNext(nodeToAdd);
+                }
+
+                // for the node adding before
+                current.setPrevious(nodeToAdd);
+
+                // for the node we're adding
+                nodeToAdd.setNext(current);
+                nodeToAdd.setPrevious(current.getPrevious());
+                
+
+                size++;
+
+                return true;
+            }
+
+            current = current.getNext();
+        }
+
+        // did not find the employee
+        return false;
     }
 
     public void addToEnd(Employee employee) {
@@ -83,10 +125,10 @@ public class EmployeeDoublyLinkedList {
 
     public void printList() {
         EmployeeNode current = head;
-        System.out.print("HEAD -> ");
+        System.out.print("HEAD -> \n");
         while (current != null) {
             System.out.print(current);
-            System.out.print(" <=> ");
+            System.out.print(" <=> \n");
             current = current.getNext();
         }
         System.out.println("null");
