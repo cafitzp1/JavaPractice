@@ -6,31 +6,27 @@ public class App
     {
         int[] intArray = { 20, 35, -15, 7, 55, 1, -22 };
 
-        recursiveInsertionSort(intArray, 0, intArray.length);
+        recursiveInsertionSort(intArray, intArray.length);
 
         for (int i = 0; i < intArray.length; i++) {
             System.out.println(intArray[i]);
         }
     }
 
-    private static void recursiveInsertionSort(int[] intArray, int start, int end) {
+    private static void recursiveInsertionSort(int[] input, int numItems) {
 
-        // return if start crosses end
-        if(start + 1 >= end)
+        if (numItems < 2)
             return;
 
-        // we do not have to check the first value as this is in the sorted 
-        // partition already
-        int firstUnsortedIndex = start + 1; 
-        int newElement = intArray[firstUnsortedIndex];
+        recursiveInsertionSort(input, numItems - 1);
+
+        int newElement = input[numItems - 1];
         int i;
 
-        for (i = firstUnsortedIndex; i > 0 && intArray[i - 1] > newElement; i--) {
-            intArray[i] = intArray[i - 1];
+        for (i = numItems - 1; i > 0 && input[i - 1] > newElement; i--) {
+            input[i] = input[i - 1];
         }
 
-        intArray[i] = newElement;
-
-        recursiveInsertionSort(intArray, firstUnsortedIndex, end);
+        input[i] = newElement;
     }
 }
