@@ -1,5 +1,6 @@
 package my.java.app;
 
+import java.util.Set;
 import java.util.HashSet;
 import java.lang.Character;
 
@@ -11,24 +12,18 @@ public class App {
     }
 
     private static int lengthOfLongestSubstring(String s) {
-        HashSet<Character> set;
-        int longest = 0;
-
-        for (int i = 0, j = 0; i < s.length(); i++) {
-            j = i;
-            set = new HashSet<>();
-            char c;
-            while (j < s.length()) {
-                if (!set.contains(((c = s.charAt(j))))) {
-                    set.add(c);
-                    j++;
-                } else {
-                    break;
-                }
+        int n = s.length();
+        Set<Character> set = new HashSet<>();
+        int ans = 0, i = 0, j = 0;
+        while (i < n && j < n) {
+            // try to extend the range [i, j]
+            if (!set.contains(s.charAt(j))) {
+                set.add(s.charAt(j++));
+                ans = Math.max(ans, j - i);
+            } else {
+                set.remove(s.charAt(i++));
             }
-            if (j-i > longest) longest = j-i;
         }
-
-        return longest;
+        return ans;
     }
 }
