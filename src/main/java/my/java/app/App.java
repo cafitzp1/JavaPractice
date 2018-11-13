@@ -6,6 +6,17 @@ import java.util.Iterator;
 
 public class App {
     public static void main(String[] args) {
+
+        // test generic class
+        Container<Integer, String> container = new Container<>(12, "Hello");
+        int val1 = container.getItem1();
+        String val2 = container.getItem2();
+
+        System.out.println(val1);
+        System.out.println(val2);
+        System.out.println();
+
+        // test generic method
         Set<String> mySet1 = new HashSet<>();
         mySet1.add("first");
         mySet1.add("second");
@@ -25,7 +36,7 @@ public class App {
         }
     }
 
-    // union sets, store items together
+    // generic method; union sets, store items together
     public static <E> Set<E> union(Set<E> set1, Set<E> set2) {
         Set<E> result = new HashSet<>(set1);
         result.addAll(set2);
