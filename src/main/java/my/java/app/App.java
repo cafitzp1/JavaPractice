@@ -1,8 +1,5 @@
 package my.java.app;
 
-import java.util.HashSet;
-import java.lang.Character;
-
 public class App {
     public static void main(String[] args) {
 
@@ -11,49 +8,28 @@ public class App {
     }
 
     public static String longestCommonPrefix(String[] strs) {
-
-        // return if string empty
-        if (strs == null || strs.length == 0) return "";
-
-        // return if string within array is empty
-        for (int i = 0; i < strs.length; i++) {
-            if (strs[i].length() == 0)
-                return "";
+        if (strs == null || strs.length == 0) return "";    
+            return longestCommonPrefix(strs, 0 , strs.length - 1);
+    }
+    
+    public static String longestCommonPrefix(String[] strs, int l, int r) {
+        if (l == r) {
+            return strs[l];
         }
-
-        // return if no common prefix
-        HashSet<Character> set;
-        String prefix = "";
-        char current = '\0';
-        int length = strs[0].length();
-        int shortestLength = length;
-
-        // char iteration
-        int i = 0;
-        while (i < length) {
-
-            set = new HashSet<>();
-            // array iteration
-            for (int j = 0; j < strs.length; j++) {
-                if (i == 0) {
-                    if ((shortestLength = strs[j].length()) < length)
-                        length = shortestLength;
-                }
-                if (j == 0) {
-                    current = strs[0].charAt(i);
-                }
-
-                set.add(strs[j].charAt(i));
-            }
-            if (set.size() > 1) {
-                return prefix;
-            } else {
-                prefix += current; 
-            }
-
-            i++;
+        else {
+            int mid = (l + r)/2;
+            String lcpLeft =   longestCommonPrefix(strs, l , mid);
+            String lcpRight =  longestCommonPrefix(strs, mid + 1,r);
+            return commonPrefix(lcpLeft, lcpRight);
+       }
+    }
+    
+    public static String commonPrefix(String left,String right) {
+        int min = Math.min(left.length(), right.length());       
+        for (int i = 0; i < min; i++) {
+            if ( left.charAt(i) != right.charAt(i) )
+                return left.substring(0, i);
         }
-
-        return prefix;
+        return left.substring(0, min);
     }
 }
