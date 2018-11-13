@@ -1,45 +1,45 @@
 package my.java.app;
 
-import java.util.HashSet;
-import java.util.Set;
-import java.util.Iterator;
+import java.util.ArrayList;
+import java.util.List;
 
 public class App {
     public static void main(String[] args) {
 
-        // test generic class
-        Container<Integer, String> container = new Container<>(12, "Hello");
-        int val1 = container.getItem1();
-        String val2 = container.getItem2();
+        Object myObject = new Object();
+        String myVar = "hello";
+        myObject = myVar;
 
-        System.out.println(val1);
-        System.out.println(val2);
-        System.out.println();
+        Employee emp = new Employee();
+        Accountant acc = new Accountant();
+        emp = acc;
 
-        // test generic method
-        Set<String> mySet1 = new HashSet<>();
-        mySet1.add("first");
-        mySet1.add("second");
-        mySet1.add("third");
+        ArrayList<Employee> employees = new ArrayList<Employee>();
+        employees.add(new Employee());
+        ArrayList<Accountant> accountants = new ArrayList<Accountant>();
+        accountants.add(new Accountant());
+        // employees = accountants;
 
-        Set<String> mySet2 = new HashSet<>();
-        mySet2.add("first");
-        mySet2.add("second");
-        mySet2.add("fourth");
+        ArrayList<?> employees2 = new ArrayList<>();
+        ArrayList<Accountant> accountants2 = new ArrayList<>();
+        employees2 = accountants2;
 
-        Set<String> resultSet = union(mySet1, mySet2);
+        // upper bound
+        ArrayList<? extends Employee> employees3 = new ArrayList<>();
+        ArrayList<Accountant> accountants3 = new ArrayList<>();
+        employees3 = accountants3;
 
-        // another way of iterating over collections; every collection has it
-        Iterator<String> itr = resultSet.iterator();
-        while (itr.hasNext()) {
-            System.out.println(itr.next());
-        }
+        // lower bound
+        ArrayList<? super Employee> employees4 = new ArrayList<>();
+        ArrayList<Object> accountants4 = new ArrayList<>();
+        employees4 = accountants4; 
+
+        makeEmployeeWork(accountants);
     }
 
-    // generic method; union sets, store items together
-    public static <E> Set<E> union(Set<E> set1, Set<E> set2) {
-        Set<E> result = new HashSet<>(set1);
-        result.addAll(set2);
-        return result;
+    public static void makeEmployeeWork(List<? extends Employee> employees) {
+        for (Employee emp : employees) {
+            emp.work();
+        }
     }
 }
