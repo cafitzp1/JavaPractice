@@ -18,10 +18,27 @@ public class App {
         stack.push(mary);
         stack.push(mike);
         stack.push(bill);
-
-        //System.out.println(stack.peek());
-        System.out.println("Popped: " + stack.pop());
+        
+        LinkedQueue queue = new LinkedQueue();
+        queue.add(jane);
+        queue.add(john);
+        queue.add(mary);
+        queue.add(mike);
+        queue.add(bill);
+        
+        System.out.println("STACK:");
         stack.printStack();
-        // System.out.println(stack.peek());
+        System.out.println("------------");
+        System.out.println("Popped: " + stack.pop());
+        System.out.println("------------");
+        stack.printStack();
+        System.out.println();
+        
+        System.out.println("QUEUE:");
+        queue.printQueue();
+        System.out.println("------------");
+        System.out.println("Removed: " + queue.remove());
+        System.out.println("------------");
+        queue.printQueue();
     }
-}
+} 
