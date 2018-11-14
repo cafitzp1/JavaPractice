@@ -4,33 +4,17 @@ public class App {
 
     public static void main(String[] args) {
         
-        Employee jane = new Employee("Jane", "Jones", 123);
-        Employee john = new Employee("John", "Doe", 4567);
-        Employee mary = new Employee("Mary", "Smith", 22);
-        Employee mike = new Employee("Mike", "Wilsone", 3245);
-        Employee benBefore = new Employee("Ben", "Before", 012);
+        ArrayStack stack = new ArrayStack(10);
 
-        EmployeeDoublyLinkedList list = new EmployeeDoublyLinkedList();
+        stack.push(new Employee("Jane", "Jones", 123));
+        stack.push(new Employee("John", "Doe", 4567));
+        stack.push(new Employee("Mary", "Smith", 22));
+        stack.push(new Employee("Mike", "Wilson", 3245));
+        stack.push(new Employee("Bill", "End", 78));
 
-        // add employees to the list
-        list.addToFront(jane);
-        list.addToFront(john);
-        list.addToFront(mary);
-        list.addToFront(mike);
-
-        list.printList();
-        System.out.println(list.getSize());
-
-        // add employee before employee within list
-        list.addBefore(benBefore, john);
-
-        // add employee before head
-        list.addBefore(benBefore, mike);
-
-        // add an employee before false employee
-        list.addBefore(benBefore, new Employee("fake", "employee", 000));
-
-        list.printList();
-        System.out.println(list.getSize());
+        // stack.printStack();
+        // System.out.println(stack.peek());
+        System.out.println("Popped: " + stack.pop());
+        System.out.println(stack.peek());
     }
 }
