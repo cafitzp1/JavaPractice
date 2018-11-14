@@ -2,13 +2,13 @@ package my.java.app;
 
 import java.util.NoSuchElementException;
 
-public class ArrayQueue {
+public class CircularArrayQueue {
 
     private Employee[] queue;
     private int front;
     private int back;
 
-    public ArrayQueue(int capacity) {
+    public CircularArrayQueue(int capacity) {
         queue = new Employee[capacity];
     }
 

@@ -10,7 +10,7 @@ public class App {
         Employee mike = new Employee("Mike", "Wilson", 3245);
         Employee bill = new Employee("Bill", "End", 78);
 
-        ArrayQueue queue = new ArrayQueue(5);
+        CircularArrayQueue queue = new CircularArrayQueue(5);
 
         // queue.add(jane);
         // queue.add(john);
