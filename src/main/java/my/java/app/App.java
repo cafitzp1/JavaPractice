@@ -1,24 +1,45 @@
 package my.java.app;
 
 public class App {
+
     public static void main(String[] args) {
+        // should return true
+        System.out.println(checkForPalindrome("abccba"));
+        // should return true
+        System.out.println(checkForPalindrome("Was it a car or a cat I saw?"));
+        // should return true
+        System.out.println(checkForPalindrome("I did, did I?"));
+        // should return false
+        System.out.println(checkForPalindrome("hello"));
+        // should return true
+        System.out.println(checkForPalindrome("Don't nod"));
+    }
 
-        LinkedStack<Integer> stack = new LinkedStack<>();
-        LinkedQueue<Integer> queue = new LinkedQueue<>();
+    public static boolean checkForPalindrome(String string) {
 
-        stack.push(1);
-        stack.push(2);
-        stack.push(3);
-        stack.push(4);
-        stack.push(5);
-        
-        queue.add(1);
-        queue.add(2);
-        queue.add(3);
-        queue.add(4);
-        queue.add(5);
+        if (string == null || string.length() == 0)
+            return false;
 
-        stack.printStack();
-        // queue.printQueue();
+        string = string.toLowerCase();
+        LinkedQueue<Character> ordered = new LinkedQueue<>();
+        LinkedStack<Character> reversed = new LinkedStack<>();
+        int length = 0;
+
+        for (int i = 0; i < string.length(); i++) {
+            char current = string.charAt(i);
+            if (current >= 'a' && current <= 'z') {
+                length++;
+                ordered.add(current);
+                reversed.push(current);
+            }
+        }
+
+        while(length > 0) {
+            if (ordered.remove() != reversed.pop())
+                return false;
+
+            length--;
+        }
+        return true;
     }
 }
