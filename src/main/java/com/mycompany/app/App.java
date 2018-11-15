@@ -1,10 +1,7 @@
 package com.mycompany.app;
 
-import java.util.List;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.Comparator;
+import java.util.List;
 
 public class App {
     public static void main(String[] args) {
@@ -20,11 +17,16 @@ public class App {
     }
 
     public static void bucketSort(int[] input) {
+        // NOTE: using parent interface 'List' makes it
+        // easy to switch implementations (see below)
         List<Integer>[] buckets = new List[10];
 
         // create array list at each bucket
         for (int i = 0; i < buckets.length; i++) {
-            buckets[i] = new ArrayList<Integer>();
+            // NOTE: works with arraylist, linkedlist, vector, etc
+            // buckets[i] = new java.util.LinkedList<Integer>();
+            // buckets[i] = new java.util.Vector<Integer>();
+            buckets[i] = new java.util.ArrayList<Integer>();
         }
 
         // scatter values, hash, put into appropriate bucket
@@ -35,6 +37,7 @@ public class App {
         // sort each bucket
         System.out.println("Length: " + buckets.length);
         for (List<Integer> bucket : buckets) {
+            // NOTE: works with multiple sort algorithms
             // using JDK sort
             // Collections.sort(bucket);
 
