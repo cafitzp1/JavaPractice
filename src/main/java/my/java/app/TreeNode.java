@@ -25,7 +25,7 @@ public class TreeNode {
                 // subtree has a left child, so we compare
                 leftChild.insert(value);
             }
-        // we want to insert somewhere on the right
+            // we want to insert somewhere on the right
         } else {
             // same thing for the right
             if (rightChild == null) {
@@ -34,6 +34,43 @@ public class TreeNode {
                 rightChild.insert(value);
             }
         }
+    }
+
+    public TreeNode get(int value) {
+        // check value against value of the node
+        if (value == data) {
+            // return 'this' tree node
+            return this;
+        }
+
+        if (value < data) {
+            if (leftChild != null)
+                // call recursively to search the left subtree
+                return leftChild.get(value);
+            // value is not in the left
+        } else {
+            if (rightChild != null) {
+                // call recursively to search the right subtree
+                return rightChild.get(value);
+            }
+        }
+
+        // we coulnd't find the value we were looking for
+        return null;
+    }
+
+    public int min() {
+        if (leftChild == null)
+            return data;
+
+        return leftChild.min();
+    }
+
+    public int max() {
+        if (rightChild == null)
+            return data;
+
+        return rightChild.max();
     }
 
     public void traverseInOrder() {
@@ -49,19 +86,28 @@ public class TreeNode {
     public int getData() {
         return this.data;
     }
+
     public void setData(int data) {
         this.data = data;
     }
+
     public TreeNode getLeftChild() {
         return this.leftChild;
     }
+
     public void setLeftChild(TreeNode leftChild) {
         this.leftChild = leftChild;
     }
+
     public TreeNode getRightChild() {
         return this.rightChild;
     }
+
     public void setRightChild(TreeNode rightChild) {
         this.rightChild = rightChild;
+    }
+
+    public String toString() {
+        return "Data = " + this.data;
     }
 }
