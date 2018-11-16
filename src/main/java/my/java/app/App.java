@@ -18,6 +18,13 @@ public class App {
         intTree.traverseInOrder();
         System.out.println();
 
+        intTree.traversePreOrder();
+        System.out.println();
+
+        intTree.traversePostOrder();
+        System.out.println();
+
+        //#region tests
         // System.out.println(intTree.get(27));
         // System.out.println(intTree.get(17));
         // System.out.println(intTree.get(8888));
@@ -25,9 +32,10 @@ public class App {
         // System.out.println(intTree.min());
         // System.out.println(intTree.max());
 
-        intTree.delete(25);
-        intTree.delete(8888);
-        intTree.traverseInOrder();
-        System.out.println();
+        // intTree.delete(25);
+        // intTree.delete(8888);
+        // intTree.traverseInOrder();
+        // System.out.println();
+        //#endregion
     }
 }

@@ -88,4 +88,16 @@ public class Tree {
             root.traverseInOrder();
         }
     }
+
+    public void traversePreOrder() {
+        if (root != null) {
+            root.traversePreOrder();
+        }
+    }
+
+    public void traversePostOrder() {
+        if (root != null) {
+            root.traversePostOrder();
+        }
+    }
 }
