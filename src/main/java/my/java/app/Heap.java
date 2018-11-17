@@ -56,6 +56,19 @@ public class Heap {
         return deletedValue;
     }
 
+    public void sort() {
+        int lastHeapIndex = size - 1;
+        for (int i = 0; i < lastHeapIndex; i++) {
+            int tmp = heap[0];
+            // 7-0 = 7, 7-1 = 6, etc.
+            heap[0] = heap[lastHeapIndex - i];
+            heap[lastHeapIndex - i] = tmp;
+            // 7-0-1 = 6, 6-1-1 = 5, etc.
+            fixHeapBelow(0, lastHeapIndex - i - 1);
+        }
+        // we look at every item on the heap, and by the end the heap is sorted
+    }
+
     // for inserts, we have to fix the heap by travelling upwards
     private void fixHeapAbove(int index) {
         // store the value we've just inserted

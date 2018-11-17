@@ -16,10 +16,11 @@ public class App {
 
         heap.printHeap();
         
-        heap.delete(0);
+        // heap.delete(0);
+        // heap.printHeap();
+        // System.out.println(heap.peek());
+
+        heap.sort();
         heap.printHeap();
-
-        System.out.println(heap.peek());
-
     }
 }
