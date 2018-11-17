@@ -27,6 +27,9 @@ public class App {
     // Implement your solution below.
     public static Boolean isRotation(int[] array1, int[] array2) {
 
+        if (array1.length != array2.length)
+            return false;
+
         int matches = 0;
 
         for (int i = 0, j = 0, k = 0; i < array1.length && k < array2.length; j++) {
