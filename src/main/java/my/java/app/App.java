@@ -17,11 +17,11 @@ public class App {
         // mostFrequent(array5) should return -1.
         int[] array5 = {0, -1, 10, 10, -1, 10, -1, -1, -1, 1};
         
-        // System.out.println(mostFreqent(array1));       
+        System.out.println(mostFreqent(array1));       
         System.out.println(mostFreqent(array2));       
-        // System.out.println(mostFreqent(array3));       
-        // System.out.println(mostFreqent(array4));       
-        // System.out.println(mostFreqent(array5));       
+        System.out.println(mostFreqent(array3));       
+        System.out.println(mostFreqent(array4));       
+        System.out.println(mostFreqent(array5));       
     }
 
     // Implement your solution below.
