@@ -6,6 +6,7 @@ public class App
     {
         System.out.println(recursiveFactorial(3));
         System.out.println(iterativeFactorial(3));
+        System.out.println(fibonacci(7));
     }
 
     private static int recursiveFactorial (int num) {
@@ -27,5 +28,12 @@ public class App
         }
 
         return factorial;
+    }
+
+    private static int fibonacci(int n) {
+        if (n <= 2)
+            return 1;
+
+        return fibonacci(n-2) + fibonacci(n-1);
     }
 }
