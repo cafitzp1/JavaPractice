@@ -100,4 +100,10 @@ public class Tree {
             root.traversePostOrder();
         }
     }
+
+    public void printListInOrder() {
+        for (Integer num : root.addToListInOrder()) {
+            System.out.print(num + " ");
+        }
+    }
 }

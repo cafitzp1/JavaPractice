@@ -1,5 +1,7 @@
 package my.java.app;
 
+import java.util.ArrayList;
+
 public class TreeNode {
 
     private int data;
@@ -104,6 +106,21 @@ public class TreeNode {
             rightChild.traversePostOrder();
         }
         System.out.print(data + ", ");
+    }
+
+    public ArrayList<Integer> addToListInOrder() {
+        ArrayList<Integer> list = new ArrayList<>();
+        return addToListInOrder(list);
+    }
+
+    private ArrayList<Integer> addToListInOrder(ArrayList<Integer> list) {
+        if (leftChild != null)
+            leftChild.addToListInOrder(list);
+        list.add(data);
+        if (rightChild != null)
+            rightChild.addToListInOrder(list);
+
+        return list;
     }
 
     public int getData() {

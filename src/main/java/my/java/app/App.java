@@ -15,27 +15,6 @@ public class App {
         intTree.insert(32);
         intTree.insert(17);
         
-        intTree.traverseInOrder();
-        System.out.println();
-
-        intTree.traversePreOrder();
-        System.out.println();
-
-        intTree.traversePostOrder();
-        System.out.println();
-
-        //#region tests
-        // System.out.println(intTree.get(27));
-        // System.out.println(intTree.get(17));
-        // System.out.println(intTree.get(8888));
-
-        // System.out.println(intTree.min());
-        // System.out.println(intTree.max());
-
-        // intTree.delete(25);
-        // intTree.delete(8888);
-        // intTree.traverseInOrder();
-        // System.out.println();
-        //#endregion
+        intTree.printListInOrder();
     }
 }
