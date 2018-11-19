@@ -1,9 +1,18 @@
 package my.java.app;
 
 public class App {
+
+    // create a function to increment surrounding fields in a game of mine sweeper
+    // when the bomb locations are known. for example, bombs at [0,0] and [0,1] mean
+    // the surrounding fields should look like this...
+
+    // -1 -1  1  0 
+    //  2  2  1  0 
+    //  0  0  0  0 
+
     public static void main(String[] args) {
 
-        int[][] bombs = new int[][] { new int[] { 0, 2 }, new int[] { 2, 0 } };
+        int[][] bombs = new int[][] { new int[] { 0, 0 }, new int[] { 0, 1 } };
         int[][] results = mineSweeper(bombs, 3, 4);
 
         for (int[] result : results) {
@@ -14,24 +23,23 @@ public class App {
             }
             System.out.println();
         }
-
     }
 
     private static int[][] mineSweeper(int[][] bombs, int rows, int cols) {
 
         int[][] result = new int[rows][cols];
 
-        // add bombs
-        for (int[] bomb : bombs) {
-            result[bomb[0]][bomb[1]] = -1;
-        }
 
         // initialize result field
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < cols; j++) {
-                if (result[i][j] != -1)
-                    result[i][j] = 0;
+                result[i][j] = 0;
             }
+        }
+
+        // add bombs
+        for (int[] bomb : bombs) {
+            result[bomb[0]][bomb[1]] = -1;
         }
 
         // increment for bombs
